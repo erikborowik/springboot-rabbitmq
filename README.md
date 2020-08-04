@@ -15,6 +15,8 @@ Criar filas (Queues):
 ## MYSQL
 docker run --name mysql -d -p 3306:3306 -e MYSQL_ROOT_HOST=% -e MYSQL_ROOT_PASSWORD=toor mysql/mysql-server:latest
 
+Pra fins práticos subindo apenas um banco q serão utilizados por todos microserviços, porém os microserviços não acessam o dominio de outro serviço
+
 ### Caso apresente erro de conexão do spring com o mysql será necessário executar os comandos abaixo no docker do mysql
 
 docker exec -it mysql bash
