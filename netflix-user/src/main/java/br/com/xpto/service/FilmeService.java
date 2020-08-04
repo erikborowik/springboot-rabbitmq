@@ -1,5 +1,7 @@
 package br.com.xpto.service;
 
+import java.util.Date;
+
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -32,7 +34,7 @@ public class FilmeService {
 	public void save(UsuarioFilmeAvaliado req) throws Exception {
 		repoAvaliacao.save(req);
 	    String json = new ObjectMapper().writeValueAsString(req);
-        rabbitTemplate.convertAndSend(MachineAMQPConfig.EXCHANGE_FILME, "filmes.assistidos", json);
+        rabbitTemplate.convertAndSend(MachineAMQPConfig.EXCHANGE_FILME, "filmes.avaliados", json);
 	}
 
 	public Iterable<UsuarioFilmeAvaliado> buscarAvaliacaoDoUsuario(Integer idFilme, Integer idUsuario) {
@@ -50,9 +52,10 @@ public class FilmeService {
 	}
 
 	public void playFilm(UsuarioFilmeAssistido filme) throws Exception {
+		filme.setDataPlay(new Date());
 		repoPlay.save(filme);
 		String json = new ObjectMapper().writeValueAsString(filme);
-		rabbitTemplate.convertAndSend(MachineAMQPConfig.EXCHANGE_FILME, "filmes.avaliados", json);
+		rabbitTemplate.convertAndSend(MachineAMQPConfig.EXCHANGE_FILME, "filmes.assistidos", json);
 	}
 
 	public void adicionarNaListaDeFilmesParaAssistir(UsuarioListaFilme filme) {

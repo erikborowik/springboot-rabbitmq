@@ -60,7 +60,7 @@ public class FilmesController {
 			@ApiResponse(responseCode = "500", description = "Internal Server Error", content =
 			@Content(mediaType = "application/json"))
 	})
-	public void playMovie (UsuarioFilmeAssistido filme) throws Exception {
+	public void playMovie (@RequestBody UsuarioFilmeAssistido filme) throws Exception {
 		service.playFilm(filme);
 	}
 	

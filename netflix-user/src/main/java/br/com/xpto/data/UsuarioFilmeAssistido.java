@@ -25,5 +25,7 @@ public class UsuarioFilmeAssistido {
 	
 	private Integer idFilme;
 	
+	private Integer idUsuario;
+	
 	private Date dataPlay;
 }

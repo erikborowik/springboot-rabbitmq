@@ -15,7 +15,6 @@ public class MachineAMQPConfig {
 
 
 	public static String EXCHANGE_FILME = "Filmes-Exchange";
-//	public static String EXCHANGE_NAME2 = "Support-Exchange";//Support-Exchange
 
 	public static final String QUEUE_FILMES_AVALIADOS = "filmesAvaliados";
 	public static final String QUEUE_FILMES_ASSISTIDOS = "filmesAssistidos";
