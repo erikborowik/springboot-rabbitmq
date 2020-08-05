@@ -14,7 +14,7 @@ import org.springframework.context.annotation.Configuration;
 public class SuporteAMQPConfig {
 
 
-	public static String EXCHANGE_SUPORTE = "Support-Exchange";
+	public static String EXCHANGE_SUPORTE = "Suporte-Exchange";
 
 	public static final String QUEUE_SUPORTE_TICKET = "suporteTicket";
 	public static final String ROUTING_KEY_SUPORTE_TICKET = "suporte.ticket";
