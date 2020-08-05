@@ -23,7 +23,7 @@ public class FilmesQueueConsumer {
 	private ObjectMapper objectMapper;
 
 
-	@RabbitListener(queues = MachineAMQPConfig.QUEUE_FILMES_AVALIADOS)
+	@RabbitListener(queues = FilmesAMQPConfig.QUEUE_FILMES_AVALIADOS)
 	public void consumer(@Payload String fileBody) {
 		UsuarioFilmeAvaliado filmeAvaliado = null;
 		try {
@@ -34,7 +34,7 @@ public class FilmesQueueConsumer {
 		filmeService.adicionarAvaliacaoUsuario(filmeAvaliado);
 	}
 
-	@RabbitListener(queues = MachineAMQPConfig.QUEUE_FILMES_ASSISTIDOS)
+	@RabbitListener(queues = FilmesAMQPConfig.QUEUE_FILMES_ASSISTIDOS)
 	public void consumer2(@Payload String fileBody) {
 		UsuarioFilmeAssistido filmeAssistido = null;
 		try {

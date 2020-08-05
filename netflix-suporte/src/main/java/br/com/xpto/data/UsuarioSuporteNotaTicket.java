@@ -16,7 +16,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Entity
 public class UsuarioSuporteNotaTicket {
-	
+
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Long idSuporteNota;
@@ -26,5 +26,5 @@ public class UsuarioSuporteNotaTicket {
 	private Long idUsuario;
 
 	private String descricaoNota;
-
+	
 }

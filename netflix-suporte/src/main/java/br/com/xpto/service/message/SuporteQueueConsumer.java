@@ -9,8 +9,8 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import br.com.xpto.data.UsuarioSuporteNotaTicket;
-import br.com.xpto.service.UsuarioTicketService;
+import br.com.xpto.data.UsuarioTicket;
+import br.com.xpto.service.ChamadoService;
 
 @Component
 public class SuporteQueueConsumer {
@@ -19,17 +19,17 @@ public class SuporteQueueConsumer {
 	private ObjectMapper objectMapper;
 	
 	@Autowired
-	private UsuarioTicketService ticketService;
+	private ChamadoService service;
 	
-	@RabbitListener(queues = MachineAMQPConfig.QUEUE_RESPOSTA_SUPORTE)
+	@RabbitListener(queues = SuporteAMQPConfig.QUEUE_SUPORTE_TICKET)
 	public void consumer(@Payload String fileBody) {
-		UsuarioSuporteNotaTicket notaTicket = null;
+		UsuarioTicket chamado = null;
 		try {
-			notaTicket = objectMapper.readValue(fileBody, new TypeReference<UsuarioSuporteNotaTicket>(){});
+			chamado = objectMapper.readValue(fileBody, new TypeReference<UsuarioTicket>(){});
 		} catch (JsonProcessingException e) {
 			e.printStackTrace();
 		}
-		ticketService.addNotaTicket(notaTicket);
+		service.addUsuarioTicket(chamado);
 	}
 
 }

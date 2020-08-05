@@ -14,7 +14,7 @@ import br.com.xpto.data.UsuarioFilmeAvaliado;
 import br.com.xpto.data.UsuarioFilmesAvaliadosRepositorio;
 import br.com.xpto.data.UsuarioListaFilme;
 import br.com.xpto.data.UsuarioListaFilmeRepositorio;
-import br.com.xpto.service.message.MachineAMQPConfig;
+import br.com.xpto.service.message.UserAMQPConfig;
 
 @Service
 public class FilmeService {
@@ -34,7 +34,7 @@ public class FilmeService {
 	public void save(UsuarioFilmeAvaliado req) throws Exception {
 		repoAvaliacao.save(req);
 	    String json = new ObjectMapper().writeValueAsString(req);
-        rabbitTemplate.convertAndSend(MachineAMQPConfig.EXCHANGE_FILME, "filmes.avaliados", json);
+        rabbitTemplate.convertAndSend(UserAMQPConfig.EXCHANGE_FILME, "filmes.avaliados", json);
 	}
 
 	public Iterable<UsuarioFilmeAvaliado> buscarAvaliacaoDoUsuario(Integer idFilme, Integer idUsuario) {
@@ -55,7 +55,7 @@ public class FilmeService {
 		filme.setDataPlay(new Date());
 		repoPlay.save(filme);
 		String json = new ObjectMapper().writeValueAsString(filme);
-		rabbitTemplate.convertAndSend(MachineAMQPConfig.EXCHANGE_FILME, "filmes.assistidos", json);
+		rabbitTemplate.convertAndSend(UserAMQPConfig.EXCHANGE_FILME, "filmes.assistidos", json);
 	}
 
 	public void adicionarNaListaDeFilmesParaAssistir(UsuarioListaFilme filme) {

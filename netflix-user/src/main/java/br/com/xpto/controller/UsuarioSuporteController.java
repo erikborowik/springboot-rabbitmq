@@ -33,7 +33,7 @@ public class UsuarioSuporteController {
 			@ApiResponse(responseCode = "500", description = "Internal Server Error", content =
 			@Content(mediaType = "application/json"))
 	})
-	public @ResponseBody UsuarioTicket criarTicket (@RequestBody UsuarioTicket ticket) {
+	public @ResponseBody UsuarioTicket criarTicket (@RequestBody UsuarioTicket ticket) throws Exception {
 		return service.save(ticket);
 	}
 
