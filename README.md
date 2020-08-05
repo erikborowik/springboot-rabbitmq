@@ -11,6 +11,7 @@ Usuário e senha: guest
 Criar filas (Queues):
  - filmesAvaliados
  - filmesAssistidos
+ - respostaSuporte
 
 ## MYSQL
 docker run --name mysql -d -p 3306:3306 -e MYSQL_ROOT_HOST=% -e MYSQL_ROOT_PASSWORD=toor mysql/mysql-server:latest
