@@ -30,7 +30,7 @@ public class FilmeService {
 		return generoRepo.save(genero);
 	}
 
-	public Iterable<Filme> findAll(Integer idGenero, String nomeFilme) {
+	public Iterable<Filme> findAll(Integer idGenero, String nomeFilme, String texto) {
 		
 		if(idGenero != null && nomeFilme != null) {
 			return filmeRepo.findByIdGeneroFilmeAndName(idGenero, nomeFilme);
@@ -38,6 +38,8 @@ public class FilmeService {
 			return filmeRepo.findByIdGeneroFilmeOrderByNameAsc(idGenero);
 		}else if (nomeFilme != null) {
 			return filmeRepo.findByName(nomeFilme);
+		}else if(texto != null) {
+			return filmeRepo.findByNameIgnoreCaseOrDetalhesIgnoreCase(texto.toLowerCase());
 		}else {
 			return filmeRepo.findAll();
 		}

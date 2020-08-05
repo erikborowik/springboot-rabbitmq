@@ -27,7 +27,7 @@ public class FilmesController {
 	
 	
 	@GetMapping()
-	@Operation(summary = "Filme", description = "Este serviço recupera lista filmes para filtro pode passar idGenero e/ou nomeFilme",
+	@Operation(summary = "Filme", description = "Este serviço recupera lista filmes para filtro pode passar idGenero, nomeFilme ou qualquer palavra chave para localizar um filme",
 	responses = {
 			@ApiResponse(responseCode = "200", description = "Tipos localizados", content =
 					@Content(mediaType = "application/json", schema = @Schema(implementation = Filme.class))),
@@ -36,8 +36,9 @@ public class FilmesController {
 			@ApiResponse(responseCode = "500", description = "Internal Server Error", content =
 			@Content(mediaType = "application/json"))
 	})
-	public @ResponseBody Iterable<Filme> listarFilmes(@RequestParam(required = false) Integer idGenero, @RequestParam(required = false) String nomeFilme) {
-		return filmeService.findAll(idGenero, nomeFilme);
+	public @ResponseBody Iterable<Filme> listarFilmes(@RequestParam(required = false) Integer idGenero, 
+			@RequestParam(required = false) String nomeFilme, @RequestParam(required = false) String texto) {
+		return filmeService.findAll(idGenero, nomeFilme, texto);
 	}
 	
 	@GetMapping("/categoria/{idCategoria}")
